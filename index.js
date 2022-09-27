@@ -13,39 +13,33 @@ program
 program.parse(process.argv);
 
 const argv = program.opts();
-console.log (argv)
 
-const invokeAction = async({ action, id, name, email, phone })=> {
-  switch (action) {
-    case "list":
-          const allContacts = await contacts.listContacts();
-          console.log(allContacts);
-      break;
+const invokeAction = async ({ action, id, name, email, phone }) => {
+    switch (action) {
+        case "list":
+            const allContacts = await contacts.listContacts();
+            console.log(allContacts);
+            break;
 
-    case "get":
-          const contact = await contacts.getContactById(id);
-          console.log(contact);
-      break;
+        case "get":
+            const contact = await contacts.getContactById(id);
+            console.log(contact);
+            break;
 
-    case "add":
-          const newContact = await contacts.addContact({ name, email, phone });
-          console.log(newContact);
-      break;
+        case "add":
+            const newContact = await contacts.addContact({ name, email, phone });
+            console.log(newContact);
+            break;
 
-    case "remove":
-          const removeContact = await contacts.removeContact(id);
-          console.log(removeContact);
-      break;
+        case "remove":
+            const removeContact = await contacts.removeContact(id);
+            console.log(removeContact);
+            break;
 
-    default:
-      console.warn("\x1B[31m Unknown action type!");
-  }
-}
-
-// invokeAction({action:"list"})
-// invokeAction({action:"get", id:"2"});
-// invokeAction({ action: "add", name: "Mango", email: "mango@gmail.com", phone: "322-22-22" });
-// invokeAction({action: "remove", id:"3"})
+        default:
+            console.warn("\x1B[31m Unknown action type!");
+    };
+};
 
 (async () => {
 invokeAction(argv);
