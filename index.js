@@ -1,19 +1,20 @@
 const contacts = require("./contacts");
 
-// const { Command } = require("commander");
-// const program = new Command();
-// program
-//   .option("-a, --action <type>", "choose action")
-//   .option("-i, --id <type>", "user id")
-//   .option("-n, --name <type>", "user name")
-//   .option("-e, --email <type>", "user email")
-//   .option("-p, --phone <type>", "user phone");
+const { Command } = require("commander");
 
-// program.parse(process.argv);
+const program = new Command();
+program
+  .option("-a, --action <type>", "choose action")
+  .option("-i, --id <type>", "user id")
+  .option("-n, --name <type>", "user name")
+  .option("-e, --email <type>", "user email")
+  .option("-p, --phone <type>", "user phone");
 
-// const argv = program.opts();
+program.parse(process.argv);
 
-// TODO: рефакторить
+const argv = program.opts();
+console.log (argv)
+
 const invokeAction = async({ action, id, name, email, phone })=> {
   switch (action) {
     case "list":
@@ -46,6 +47,7 @@ const invokeAction = async({ action, id, name, email, phone })=> {
 // invokeAction({ action: "add", name: "Mango", email: "mango@gmail.com", phone: "322-22-22" });
 // invokeAction({action: "remove", id:"3"})
 
-// invokeAction(argv);
-
+(async () => {
+invokeAction(argv);
+})();
 
